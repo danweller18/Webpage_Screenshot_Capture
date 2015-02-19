@@ -9,14 +9,14 @@ This script will take a picture using [Page 2 Images][4] and store it in your go
 
 Taken straight from their post:
 
-*Go to [Screenshotmachine.com][2] and create an account. After sign up you will get an account key, keep it with you. This account key will be used for the API request.
-*Now [open this Google Spreadsheet][3], go to File-->make a copy...
-*After making a copy you can close the original spreadsheet. Just keep your own spreadsheet open.
-*Provide the required parameters as required.
-*After providing details simply press the Verify now button to verify whether the API works properly or not.
-*If the API works, it will create a folder in your Google Drive and put the screenshot inside it.
-*Once you are conform that the API works well, you can press the Start capturing button to automate the process in a regular interval.
-*The frequency of capturing you can customize from the in-cell-dropdown.
+* Go to [Screenshotmachine.com][2] and create an account. After sign up you will get an account key, keep it with you. This account key will be used for the API request.
+* Now [open this Google Spreadsheet][3], go to File-->make a copy...
+* After making a copy you can close the original spreadsheet. Just keep your own spreadsheet open.
+* Provide the required parameters as required.
+* After providing details simply press the Verify now button to verify whether the API works properly or not.
+* If the API works, it will create a folder in your Google Drive and put the screenshot inside it.
+* Once you are conform that the API works well, you can press the Start capturing button to automate the process in a regular interval.
+* The frequency of capturing you can customize from the in-cell-dropdown.
 
 
 
