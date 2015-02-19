@@ -1,6 +1,8 @@
-#Webpage_Screenshot_Capture Google Script
+#Webpage_Screenshot_Capture_to_Email Google Script
 
-This is the README file for the Webpage_Screenshot_Capture Google Script.
+This is the README file for the Webpage_Screenshot_Capture_to_Email Google Script.
+
+The Google Drive Spreadsheet can be found [here][5].
 
 ###Purpose of the script
 This script will take a picture using [Page 2 Images][4] and store it in your google drive account. Then you can email yourself the picture after it has taken it. I did not create the script but this was script is a copy of a script created by [Fun But Learn][1]. They originally created the script to take a screenshot of a webpage and store that image in your Google Drive account using [Screenshotmachine.com][2]. I modified the script to use [Page 2 Images][4] and email it to yourself after the picture is stored in Google Drive.
@@ -24,3 +26,4 @@ Taken straight from their post:
 [2]: http://www.screenshotmachine.com
 [3]: https://docs.google.com/spreadsheet/ccc?key=0AgHK_Z79lrOmdDBCVkE3Ym93anROZ1gyeS1SZjBfWXc&usp=sharing
 [4]: http://www.page2images.com/
+[5]: https://docs.google.com/spreadsheet/ccc?key=0AvsOrg2yqCx_dFUxSXFSd2RfS2pnLU5hbXlxOVcwNkE&usp=sharing
