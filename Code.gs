@@ -31,6 +31,13 @@ function startTriggers(){
   }
     Logger.log(sheet.getRange("D9").getValue());
     switch(sheet.getRange("D9").getValue()){
+       case "Every weekday":
+        ScriptApp.newTrigger("captureWebPage").timeBased().onWeekDay(ScriptApp.WeekDay.MONDAY).create();
+        ScriptApp.newTrigger("captureWebPage").timeBased().onWeekDay(ScriptApp.WeekDay.TUESDAY).create();
+        ScriptApp.newTrigger("captureWebPage").timeBased().onWeekDay(ScriptApp.WeekDay.WEDNESDAY).create();
+        ScriptApp.newTrigger("captureWebPage").timeBased().onWeekDay(ScriptApp.WeekDay.THURSDAY).create();
+        ScriptApp.newTrigger("captureWebPage").timeBased().onWeekDay(ScriptApp.WeekDay.FRIDAY).create();
+        break;
       case "Once in a day":
         ScriptApp.newTrigger("captureWebPage").timeBased().everyDays(1).create();
         break;
@@ -56,17 +63,30 @@ function stopTriggers(){
 function captureWebPage() {
   var sheet = getSheet();
   createFolderIfNotExist();
-  var url = "http://api.screenshotmachine.com/?key="+sheet.getRange("D3").getValue()+"&size=F&format=PNG&cacheLimit=0&timeout=1000&url="+
+  var url = "http://api.page2images.com/restfullink?p2i_key="+sheet.getRange("D3").getValue()+"&p2i_url="+
     encodeURIComponent(sheet.getRange("D6").getValue());
 
   var response = UrlFetchApp.fetch(url);
-  var fileBlob = response.getBlob()
+  var json = response.getContentText();
+  var data1 = JSON.parse(json);
+  var data = data1.image_url;
+  var image = UrlFetchApp.fetch(data);
   var folder = DocsList.getFolder(GOOGLE_DRIVE_FOLDER_NAME);
-  var result = folder.createFile(fileBlob);
+  var result = folder.createFile(image);
   var time = new Date().toLocaleString();
   result.rename(time+" ("+sheet.getRange("D6").getValue()+").png");
   sheet.getRange("A"+getLastRow()).setValue(time);
   sheet.getRange("D12").setValue(sheet.getRange("D12").getValue()+1);
+  var id = result.getId();
+  var file = DriveApp.getFileById(id);
+  var date = Utilities.formatDate(new Date(), "GMT-5", "MMM dd, yyyy");
+  var email = sheet.getRange("D15").getValue();
+  var emailsub = sheet.getRange("D18").getValue();
+  var emailbody = sheet.getRange("D21").getValue();
+  MailApp.sendEmail(email, emailsub, emailbody + date, {
+     name: emailsub + date,
+     attachments: [file.getAs(MimeType.PNG)]
+ });
 }
 
 function verifyCapturing(){
@@ -77,7 +97,7 @@ function verifyCapturing(){
 function getLastRow(){
   var sheet = getSheet();
   var lastRow = sheet.getLastRow()+1;
-  if(sheet.getLastRow()<=20){
+  if(sheet.getLastRow()<=30){
     var i = 1;
     while(sheet.getRange("A"+i).getValue()!=""){
       i++;
